@@ -1,0 +1,16 @@
+git:2.3.5
+git-client:1.17.1
+mailer:1.15
+scm-api:0.2
+matrix-project:1.4
+ssh-credentials:1.11
+credentials:1.22
+promoted-builds:2.21
+maven-plugin:2.9
+token-macro:1.10
+parameterized-trigger:2.26
+gitlab-hook:1.4.0
+ruby-runtime:0.12
+jacoco:1.0.19
+dashboard-view:2.9.4
+sonar:2.2.1
