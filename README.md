@@ -2,7 +2,7 @@
 
 ##Brief Description
 
-Full continuous deployment pipeline using tools running in docker containers. 
+Full continuous deployment pipeline using tools running all in docker containers. 
 
 Each tool runs in a separeted docker container and to manages the orchestration and deployment of the docker images 
 and containers we use Docker Compose.
@@ -65,7 +65,7 @@ To lauch the full continuous deployment pipeline environment, just execute the f
 
 This command will download the required images launching containers and will start these with this configuration in the docker-compose.yml file. You will see the following output:
 
-> $$ Creating devopstools_zookeeper_1...
+> $Creating devopstools_zookeeper_1...
 
 > $Creating devopstools_postgresql_1...
 
@@ -194,9 +194,12 @@ To using the CD envirement following the next steps:
 
 ##Final Words
 
-My recommendation is that you use at least two distinct pipeline environments, one specific for development and tests and another to production. There are two main direction to improve this system – adding more functionality and deepening the quality of the setup. The list of possible extensions is very long. Here are some examples:
+My recommendation is that you use at least two distinct pipeline environments, one specific for development and acceptance tests and another to production, and you could too do even more and also separate the development and acceptance tests environment and would be great. 
+
+There are two main direction to improve this devops-tools system: adding more functionality and deepening the quality of the setup. The list of possible extensions is very long. Here are some examples:
 
 - Manage code quality (SonarQube)
-- Package manager (NPM, NugetServer, Maven, ...)
 - Auto-scaling system (Jmeter)
+- Package manager (NPM, NugetServer, Maven, ...)
 - Project management platform (Taiga)
+- Adding centralised logging
