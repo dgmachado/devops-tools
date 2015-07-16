@@ -56,6 +56,14 @@ Download the solution and go to the directory, just executing the following comm
 
 > $ cd devops-tools
 
+Just if you are using a CentOS you also need execute the following commands:
+
+> $ cd volumes
+
+> $ chcon -Rt svirt_sandbox_file_t *
+
+Obs: Directories that you are mounting into the container need to have svirt_sandbox_file_t as their label.
+
 
 ##Quick Start
 
@@ -65,44 +73,50 @@ To lauch the full continuous deployment pipeline environment, just execute the f
 
 This command will download the required images launching containers and will start these with this configuration in the docker-compose.yml file. You will see the following output:
 
-> $ Creating devopstools_zookeeper_1...
+> Creating devopstools_zookeeper_1...
 
-> $ Creating devopstools_postgresql_1...
+> Creating devopstools_postgresql_1...
 
-> $ Creating devopstools_redis_1...
+> Creating devopstools_redis_1...
 
-> $ Creating devopstools_gitlab_1...
+> Creating devopstools_gitlab_1...
 
-> $ Creating devopstools_mesosMaster_1...
+> Creating devopstools_mesosMaster_1...
 
-> $ Creating devopstools_marathon_1...
+> Creating devopstools_marathon_1...
 
-> $ Creating devopstools_chronos_1...
+> Creating devopstools_chronos_1...
 
-> $ Creating devopstools_jenkins_1...
+> Creating devopstools_jenkins_1...
 
-> $ Creating devopstools_mesosSlave1_1...
+> Creating devopstools_mesosSlave1_1...
 
-> $ Creating devopstools_mesosSlave2_1...
+> Creating devopstools_mesosSlave2_1...
 
-> $ Creating devopstools_mesosSlave3_1...
+> Creating devopstools_mesosSlave3_1...
 
-> $ Creating devopstools_registry_1...
+> Creating devopstools_registry_1...
 
-> $ Creating devopstools_registryui_1...
+> Creating devopstools_registryui_1...
 
+You should algo verify the state of the services executing the following command:
 
+> $ docker-compose ps
+
+If any service haven't the up state you can verify the problem analyzing the logs just executing the following command:
+
+> $ docker-compose logs
 
 ##Access
 
 See the following tools that can be accessed:
 
-- Jenkins -> $ http://IP_ADDRESS:8081
-- GitLab -> $ http://IP_ADDRESS:10080
-- Registry-UI -> $ http://IP_ADDRESS:9090
-- Marathon -> $ http://IP_ADDRESS:8080
-- Mesos -> $ http://IP_ADDRESS:5050
-- Chronos -> $ http://IP_ADDRESS:4400
+- Jenkins -> http://IP_ADDRESS:8081
+- GitLab -> http://IP_ADDRESS:10080
+- Registry-UI -> http://IP_ADDRESS:9090
+- Marathon -> http://IP_ADDRESS:8080
+- Mesos -> http://IP_ADDRESS:5050
+- Chronos -> http://IP_ADDRESS:4400
 
 
 If the services are deployed locally, it is possible to replace IP_ADDRESS by localhost
@@ -124,8 +138,7 @@ For this example, we'll create a new project on the interface GitLab and place o
 
 To publishing the source code on Gitlab repositor following the next steps:
 
-1. Create a new user on Gitlab
-2. Create a new project on GitLab with the name "Sample Project"
+1. Create a new project on GitLab with the name "SampleApp"
 2. Be placed in the folder sampleapp
 3. Initialize the local repository
 > $ git init
@@ -142,30 +155,30 @@ To publishing the source code on Gitlab repositor following the next steps:
 7. Pushing the code on the remote repository 
 > $ git push origin master
 
-8. Enter the user account created on GitLab 
-
-
+8. Access the gitlab url (http://localhost:10080) to verify your pushed source code
 
 
 ###Configurating the Jenkins
 
 To configurating the jenkins build and deploy following the next steps:
 
-1. Access the Jenkins and create a new project "SampleApp" Freestyle project type 
+1. Access the Jenkins and create a new job "SampleApp" Freestyle project type 
 2. Configure the project with Git and the URL http://gitlab/root/sampleapp.git and enter the credentials with user and the password that we created earlier
 3. In the Build Triggers section, check the periodic construction and specify the following settings:
 > H/2 \* \* \* \*
 >
 > This will run a building for every two minutes
 
-4. Add to the Jenkins configuration the script to build the app container  
-> continuous_deployment_scripts/build_appcontainer.sh
+4. Add the following build steps of type 'Execute shell' to the build:
 
-5. Add to the Jenkins configuration the script to push the app container  
-> continuous_deployment_scripts/push_appcontainer.sh
+- First Command - Script to build the app container  
+> ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
 
-6. Add to the Jenkins configuration the script to deploy the app container  
-> continuous_deployment_scripts/deploy_appcontainer.sh
+- Second Command - Script to push the app container  
+> ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+
+- Third Command - Script to deploy the app container  
+> ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
 
 7. Save the configuration
 8. Build manually the "SampleApp" project
