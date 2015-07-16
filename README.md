@@ -23,17 +23,35 @@ Within the continuous deployment environment we use the following tools:
 - Mesosphere Marathon
 - Zookeeper for internal use of Mesos and Marathon
 
+##Pipeline Description
+
+The continuous deployment pipeline should be configured as follows, the developers work on their local environments and running their build, test and other processes within Docker containers. Once their code is ready and tested they will commit it to the central Git repo (Gitlab) and the new piece of code will continue its journey towards deployment. 
+
+After this, the jenkins detect a new modifications on the git repo and build the application and run all configured tests and having success in it all then push to the docker-registry the new docker images related to the application deployed, finally deploy the application on the marathon, that is an Apache Mesos framework for long-running applications. It ensures that an app stays up even when machines or entire racks fail. 
+
+With your application deployed on Marathon you can do acceptance test and scale the app with just using the Marathon interface. 
+
 ##Prerequisites:
 
 Install the following tools:
-- Docker [link](https://docs.docker.com/)
-- Docker-compose [link](https://docs.docker.com/compose/)
+- Git Client
+- Docker [link](https://docs.docker.com/installation/)
+- Docker-compose [link](https://docs.docker.com/compose/install/)
+
+##Download the solution
+
+Download the solution and go to the directory, just executing the following commands:
+
+> git clone https://github.com/dgmachado/devops-tools.git
+
+> cd devops-tools
+
 
 ##Quick Start
 
-To lauches the full continuous deployment pipeline environment, just the following command:
+To lauch the full continuous deployment pipeline environment, just execute the following command:
 
-> docker-compose up
+> docker-compose up -d
 
 This command will download the required images launching containers and will start these with this configuration in the docker-compose.yml file.
 
@@ -113,7 +131,7 @@ To configurating the jenkins build and deploy following the next steps:
 6. Add to the Jenkins configuration the script to deploy the app container  
 >continuous_deployment_scripts/deploy_appcontainer.sh
 
-7. Save Configuration
+7. Save the configuration
 8. Build manually the "SampleApp" project
 9. After the build if all successfully finished we can see the application running on Marathon web page:
 > localhost:8080
@@ -127,10 +145,22 @@ To using the CD envirement following the next steps:
 
 1. Edit the file sampleapp/nodejs_app/app.js and replace the text "Hello World\n" by the text "Hello World - New version\n";
 2. Publish the new code
+
 > git add .
->
+
 > git commit -m "Nodejs app modified"
->
->git push origin master
-3. Wait for 2 minutes and access the page http://localhost:31000
+
+> git push origin master
+
+3. Wait for 2 minutes and access the page http://localhost:31000 and see the new modification
 4. See the app running on the Marathon (http://localhost:8080)
+
+
+##Final Words
+
+My recommendation is that you use at least two distinct pipeline environments, one specific for development and tests and another to production. There are two main direction to improve this system – adding more functionality and deepening the quality of the setup. The list of possible extensions is very long. Here are some examples:
+
+- Manage code quality (SonarQube)
+- Package manager (NugetServer, Maven, ...)
+- Auto-scaling system (Jmeter)
+- Project management platform (Taiga)
