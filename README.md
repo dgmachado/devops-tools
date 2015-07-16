@@ -103,6 +103,10 @@ You should algo verify the state of the services executing the following command
 
 > $ docker-compose ps
 
+If any service haven't the up state you can verify the problem analyzing the logs just executing the following command:
+
+> $ docker-compose logs
+
 ##Access
 
 See the following tools that can be accessed:
