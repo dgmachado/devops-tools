@@ -169,14 +169,16 @@ To configurating the jenkins build and deploy following the next steps:
 >
 > This will run a building for every two minutes
 
-4. Add to the Jenkins configuration the script to build the app container  
-> continuous_deployment_scripts/build_appcontainer.sh
+4. Add the following build steps of type 'Execute shell' to the build:
 
-5. Add to the Jenkins configuration the script to push the app container  
-> continuous_deployment_scripts/push_appcontainer.sh
+- First Command - Script to build the app container  
+> ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
 
-6. Add to the Jenkins configuration the script to deploy the app container  
-> continuous_deployment_scripts/deploy_appcontainer.sh
+- Second Command - Script to push the app container  
+> ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+
+- Third Command - Script to deploy the app container  
+> ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
 
 7. Save the configuration
 8. Build manually the "SampleApp" project
