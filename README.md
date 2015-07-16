@@ -171,21 +171,21 @@ To configurating the jenkins build and deploy following the next steps:
 
 4. Add the following build steps of type 'Execute shell' to the build:
 
-- First Command - Script to build the app container  
-> ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
+   - First Command - Script to build the app container  
+   > ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
 
-- Second Command - Script to push the app container  
-> ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+   - Second Command - Script to push the app container  
+   > ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+   
+   - Third Command - Script to deploy the app container  
+   > ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
 
-- Third Command - Script to deploy the app container  
-> ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
-
-7. Save the configuration
-8. Build manually the "SampleApp" project
-9. After the build if all successfully finished we can see the application running on Marathon web page:
+5. Save the configuration
+6. Build manually the "SampleApp" project
+7. After the build if all successfully finished we can see the application running on Marathon web page:
 > localhost:8080
 
-10. We can see our app on http://localhost:31000
+8. We can see our app on http://localhost:31000
 
 
 ###Using the CD envirement
