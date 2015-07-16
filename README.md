@@ -181,16 +181,15 @@ To using the CD envirement following the next steps:
 
 1. Edit the file sampleapp/nodejs_app/app.js and replace the text "Hello World\n" by the text "Hello World - New version\n";
 2. Publish the new code
+   
+  > $git add .
 
-> $git add .
+  > $git commit -m "Nodejs app modified"
 
-> $git commit -m "Nodejs app modified"
-
-> $git push origin master
+  > $git push origin master
 
 3. Wait for 2 minutes and access the page http://localhost:31000 and see the new modification
 4. See the app running on the Marathon (http://localhost:8080)
-
 
 ##Final Words
 
