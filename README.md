@@ -40,56 +40,56 @@ Install the following tools:
 
 Advice: The docker-compose and docker should be installed under same user account. Can be necessary allow to running the docker without root account, to do this execute the following commands:
 
-> $sudo groupadd docker
+> $ sudo groupadd docker
 
-> $sudo gpasswd -a ${USER} docker
+> $ sudo gpasswd -a $ {USER} docker
 
-> $sudo service docker restart
+> $ sudo service docker restart
 
-> $exit
+> $ exit
 
 ##Download the solution
 
 Download the solution and go to the directory, just executing the following commands:
 
-> $git clone https://github.com/dgmachado/devops-tools.git
+> $ git clone https://github.com/dgmachado/devops-tools.git
 
-> $cd devops-tools
+> $ cd devops-tools
 
 
 ##Quick Start
 
 To lauch the full continuous deployment pipeline environment, just execute the following command:
 
-> $docker-compose up -d
+> $ docker-compose up -d
 
 This command will download the required images launching containers and will start these with this configuration in the docker-compose.yml file. You will see the following output:
 
-> $Creating devopstools_zookeeper_1...
+> $ Creating devopstools_zookeeper_1...
 
-> $Creating devopstools_postgresql_1...
+> $ Creating devopstools_postgresql_1...
 
-> $Creating devopstools_redis_1...
+> $ Creating devopstools_redis_1...
 
-> $Creating devopstools_gitlab_1...
+> $ Creating devopstools_gitlab_1...
 
-> $Creating devopstools_mesosMaster_1...
+> $ Creating devopstools_mesosMaster_1...
 
-> $Creating devopstools_marathon_1...
+> $ Creating devopstools_marathon_1...
 
-> $Creating devopstools_chronos_1...
+> $ Creating devopstools_chronos_1...
 
-> $Creating devopstools_jenkins_1...
+> $ Creating devopstools_jenkins_1...
 
-> $Creating devopstools_mesosSlave1_1...
+> $ Creating devopstools_mesosSlave1_1...
 
-> $Creating devopstools_mesosSlave2_1...
+> $ Creating devopstools_mesosSlave2_1...
 
-> $Creating devopstools_mesosSlave3_1...
+> $ Creating devopstools_mesosSlave3_1...
 
-> $Creating devopstools_registry_1...
+> $ Creating devopstools_registry_1...
 
-> $Creating devopstools_registryui_1...
+> $ Creating devopstools_registryui_1...
 
 
 
@@ -97,12 +97,12 @@ This command will download the required images launching containers and will sta
 
 See the following tools that can be accessed:
 
-- Jenkins -> $http://IP_ADDRESS:8081
-- GitLab -> $http://IP_ADDRESS:10080
-- Registry-UI -> $http://IP_ADDRESS:9090
-- Marathon -> $http://IP_ADDRESS:8080
-- Mesos -> $http://IP_ADDRESS:5050
-- Chronos -> $http://IP_ADDRESS:4400
+- Jenkins -> $ http://IP_ADDRESS:8081
+- GitLab -> $ http://IP_ADDRESS:10080
+- Registry-UI -> $ http://IP_ADDRESS:9090
+- Marathon -> $ http://IP_ADDRESS:8080
+- Mesos -> $ http://IP_ADDRESS:5050
+- Chronos -> $ http://IP_ADDRESS:4400
 
 
 If the services are deployed locally, it is possible to replace IP_ADDRESS by localhost
@@ -128,19 +128,19 @@ To publishing the source code on Gitlab repositor following the next steps:
 2. Create a new project on GitLab with the name "Sample Project"
 2. Be placed in the folder sampleapp
 3. Initialize the local repository
-> $git init
+> $ git init
 
 4. Connect the local repository and the remote 
-> $git remote add origin http://localhost:10080/root/sampleapp.git
+> $ git remote add origin http://localhost:10080/root/sampleapp.git
 
 5. Add all files to be commited
-> $git add .
+> $ git add .
 
 6. Commit the content 
-> $git commit -m "Initial Commit"
+> $ git commit -m "Initial Commit"
 
 7. Pushing the code on the remote repository 
-> $git push origin master
+> $ git push origin master
 
 8. Enter the user account created on GitLab 
 
@@ -182,11 +182,11 @@ To using the CD envirement following the next steps:
 1. Edit the file sampleapp/nodejs_app/app.js and replace the text "Hello World\n" by the text "Hello World - New version\n";
 2. Publish the new code
    
-  > $git add .
+  > $ git add .
 
-  > $git commit -m "Nodejs app modified"
+  > $ git commit -m "Nodejs app modified"
 
-  > $git push origin master
+  > $ git push origin master
 
 3. Wait for 2 minutes and access the page http://localhost:31000 and see the new modification
 4. See the app running on the Marathon (http://localhost:8080)
@@ -194,6 +194,8 @@ To using the CD envirement following the next steps:
 ##Final Words
 
 My recommendation is that you use at least two distinct pipeline environments, one specific for development and acceptance tests and another to production, and you could too do even more and also separate the development and acceptance tests environment and would be great. 
+
+The deploy of the development environment pipeline could push the new code on the git repo of the acceptance test and in the same way the acceptance test pipeline could push code to git repo of production pipeline finally could deploy the app in same cloud vendor. There are endless ways to customize these settings in order to achieve powerful environments and it depends only of you.
 
 There are two main direction to improve this devops-tools system: adding more functionality and deepening the quality of the setup. The list of possible extensions is very long. Here are some examples:
 
