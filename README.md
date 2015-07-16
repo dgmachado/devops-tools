@@ -138,8 +138,7 @@ For this example, we'll create a new project on the interface GitLab and place o
 
 To publishing the source code on Gitlab repositor following the next steps:
 
-1. Create a new user on Gitlab
-2. Create a new project on GitLab with the name "SampleProject"
+1. Create a new project on GitLab with the name "SampleApp"
 2. Be placed in the folder sampleapp
 3. Initialize the local repository
 > $ git init
