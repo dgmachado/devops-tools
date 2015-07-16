@@ -111,12 +111,12 @@ If any service haven't the up state you can verify the problem analyzing the log
 
 See the following tools that can be accessed:
 
-- Jenkins -> $ http://IP_ADDRESS:8081
-- GitLab -> $ http://IP_ADDRESS:10080
-- Registry-UI -> $ http://IP_ADDRESS:9090
-- Marathon -> $ http://IP_ADDRESS:8080
-- Mesos -> $ http://IP_ADDRESS:5050
-- Chronos -> $ http://IP_ADDRESS:4400
+- Jenkins -> http://IP_ADDRESS:8081
+- GitLab -> http://IP_ADDRESS:10080
+- Registry-UI -> http://IP_ADDRESS:9090
+- Marathon -> http://IP_ADDRESS:8080
+- Mesos -> http://IP_ADDRESS:5050
+- Chronos -> http://IP_ADDRESS:4400
 
 
 If the services are deployed locally, it is possible to replace IP_ADDRESS by localhost
@@ -155,16 +155,14 @@ To publishing the source code on Gitlab repositor following the next steps:
 7. Pushing the code on the remote repository 
 > $ git push origin master
 
-8. Enter the user account created on GitLab 
-
-
+8. Access the gitlab url (http://localhost:10080) to verify your pushed source code
 
 
 ###Configurating the Jenkins
 
 To configurating the jenkins build and deploy following the next steps:
 
-1. Access the Jenkins and create a new project "SampleApp" Freestyle project type 
+1. Access the Jenkins and create a new job "SampleApp" Freestyle project type 
 2. Configure the project with Git and the URL http://gitlab/root/sampleapp.git and enter the credentials with user and the password that we created earlier
 3. In the Build Triggers section, check the periodic construction and specify the following settings:
 > H/2 \* \* \* \*
