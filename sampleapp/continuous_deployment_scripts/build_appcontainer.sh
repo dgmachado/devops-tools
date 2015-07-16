@@ -7,6 +7,6 @@ else
 fi
 
 
-cd ../nodejs_app
+cd nodejs_app
 docker build -t localhost:5000/sampleapp/nodejs_app:${version} .
 cd ..
