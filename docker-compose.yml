@@ -181,7 +181,7 @@ postgresql:
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
   volumes:
-    - "postgresql-volume:/var/lib/postgresql"
+    - "volumes/postgresql-volume:/var/lib/postgresql"
     
 gitlab:
   image: sameersbn/gitlab:7.12.0
