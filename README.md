@@ -56,6 +56,14 @@ Download the solution and go to the directory, just executing the following comm
 
 > $ cd devops-tools
 
+Just if you are using a CentOS you also need execute the following commands:
+
+> $ cd volumes
+
+> $ chcon -Rt svirt_sandbox_file_t *
+
+Obs: Directories that you are mounting into the container need to have svirt_sandbox_file_t as their label.
+
 
 ##Quick Start
 
