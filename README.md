@@ -99,26 +99,9 @@ This command will download the required images launching containers and will sta
 
 > Creating devopstools_registryui_1...
 
+You should algo verify the state of the services executing the following command:
 
-You should algo verify the state of the services executing the command -> docker-compose ps:
-
-[douglas.machado@localhost devops-tools]$ docker-compose ps
->           Name                         Command               State                           Ports                         
-> --------------------------------------------------------------------------------------------------------------------------
-> devopstools_chronos_1       /usr/bin/chronos --master  ...   Up      0.0.0.0:4400->8080/tcp                                
-> devopstools_gitlab_1        /sbin/entrypoint.sh app:start    Up      0.0.0.0:10022->22/tcp, 443/tcp, 0.0.0.0:10080->80/tcp 
-> devopstools_jenkins_1       /usr/local/bin/jenkins.sh        Up      50000/tcp, 0.0.0.0:8081->8080/tcp                     
-> devopstools_marathon_1      ./bin/start --master zk:// ...   Up      0.0.0.0:8080->8080/tcp                                
-> devopstools_mesosMaster_1   mesos-master                     Up      0.0.0.0:5050->5050/tcp                                
-> devopstools_mesosSlave1_1   mesos-slave                      Up      0.0.0.0:5051->5051/tcp                                
-> devopstools_mesosSlave2_1   mesos-slave                      Up      5051/tcp, 0.0.0.0:5052->5052/tcp                      
-> devopstools_mesosSlave3_1   mesos-slave                      Up      5051/tcp, 0.0.0.0:5053->5053/tcp                      
-> devopstools_postgresql_1    /start                           Up      5432/tcp                                              
-> devopstools_redis_1         /start                           Up      6379/tcp                                              
-> devopstools_registry_1      docker-registry                  Up      0.0.0.0:5000->5000/tcp                                
-> devopstools_registryui_1    /bin/sh -c /usr/share/tomc ...   Up      0.0.0.0:9090->8080/tcp                                
-> devopstools_zookeeper_1     /opt/zookeeper/bin/zkServe ...   Up      2181/tcp, 2888/tcp, 3888/tcp                     
-
+> $ docker-compose ps
 
 ##Access
 
