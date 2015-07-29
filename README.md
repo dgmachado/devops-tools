@@ -144,7 +144,7 @@ To publishing the source code on Gitlab repositor following the next steps:
 > $ git init
 
 4. Connect the local repository and the remote 
-> $ git remote add origin http://localhost:10080/root/sampleapp.git
+> $ git remote add origin http://localhost:10080/root/SampleApp.git
 
 5. Add all files to be commited
 > $ git add .
@@ -163,7 +163,7 @@ To publishing the source code on Gitlab repositor following the next steps:
 To configurating the jenkins build and deploy following the next steps:
 
 1. Access the Jenkins and create a new job "SampleApp" Freestyle project type 
-2. Configure the project with Git and the URL http://gitlab/root/sampleapp.git and enter the credentials with user and the password that we created earlier
+2. Configure the project with Git and the URL http://gitlab/root/SampleApp.git and enter the credentials with user and the password that we created earlier
 3. In the Build Triggers section, check the periodic construction and specify the following settings:
 > H/2 \* \* \* \*
 >
