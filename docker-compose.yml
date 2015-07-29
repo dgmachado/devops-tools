@@ -121,6 +121,7 @@ chronos:
   
 jenkins:
   build: ./containers/jenkins/.
+  privileged: true
   restart: always
   links: 
     - marathon:marathon
