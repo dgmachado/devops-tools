@@ -11,4 +11,6 @@ COPY plugins.txt /usr/share/jenkins/ref/
 
 RUN bash /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 
+RUN groupadd -g 125 docker && usermod -a -G docker jenkins 
+
 USER jenkins

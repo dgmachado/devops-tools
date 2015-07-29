@@ -144,7 +144,7 @@ To publishing the source code on Gitlab repositor following the next steps:
 > $ git init
 
 4. Connect the local repository and the remote 
-> $ git remote add origin http://localhost:10080/root/sampleapp.git
+> $ git remote add origin http://localhost:10080/root/SampleApp.git
 
 5. Add all files to be commited
 > $ git add .
@@ -163,7 +163,7 @@ To publishing the source code on Gitlab repositor following the next steps:
 To configurating the jenkins build and deploy following the next steps:
 
 1. Access the Jenkins and create a new job "SampleApp" Freestyle project type 
-2. Configure the project with Git and the URL http://gitlab/root/sampleapp.git and enter the credentials with user and the password that we created earlier
+2. Configure the project with Git and the URL http://gitlab/root/SampleApp.git and enter the credentials with user and the password that we created earlier
 3. In the Build Triggers section, check the periodic construction and specify the following settings:
 > H/2 \* \* \* \*
 >
@@ -171,21 +171,21 @@ To configurating the jenkins build and deploy following the next steps:
 
 4. Add the following build steps of type 'Execute shell' to the build:
 
-- First Command - Script to build the app container  
-> ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
+   - First Command - Script to build the app container  
+   > ./continuous_deployment_scripts/build_appcontainer.sh ${BUILD_ID}
 
-- Second Command - Script to push the app container  
-> ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+   - Second Command - Script to push the app container  
+   > ./continuous_deployment_scripts/push_appcontainer.sh ${BUILD_ID}
+   
+   - Third Command - Script to deploy the app container  
+   > ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
 
-- Third Command - Script to deploy the app container  
-> ./continuous_deployment_scripts/deploy_appcontainer.sh ${BUILD_ID}
-
-7. Save the configuration
-8. Build manually the "SampleApp" project
-9. After the build if all successfully finished we can see the application running on Marathon web page:
+5. Save the configuration
+6. Build manually the "SampleApp" project
+7. After the build if all successfully finished we can see the application running on Marathon web page:
 > localhost:8080
 
-10. We can see our app on http://localhost:31000
+8. We can see our app on http://localhost:31000
 
 
 ###Using the CD envirement
